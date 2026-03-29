@@ -1,0 +1,14 @@
+# Propositions
+dark = True          # D: It is dark
+person_in_room = True  # P: Someone is in the room
+
+# Rule: If dark AND person present -> turn on light
+if dark and person_in_room:
+    light_on = True
+else:
+    light_on = False
+
+# Output action
+print("Dark:", dark)
+print("Person in room:", person_in_room)
+print("Light ON:", light_on)

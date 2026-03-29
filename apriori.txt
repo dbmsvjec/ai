@@ -1,0 +1,32 @@
+from itertools import combinations
+
+t = [
+    ['Milk','Bread','Butter'],
+    ['Bread','Butter'],
+    ['Milk','Bread'],
+    ['Milk','Butter'],
+    ['Bread','Butter']
+]
+
+min_sup, min_conf = 2, 0.6
+
+sup = lambda x: sum(1 for i in t if set(x).issubset(i))
+items = set(i for j in t for i in j)
+
+freq = [(list(c), sup(c))
+        for r in [1,2]
+        for c in combinations(items, r)
+        if sup(c) >= min_sup]
+
+print("Frequent Itemsets:")
+for f,s in freq:
+    print(f, "Support:", s)
+
+print("\nAssociation Rules:")
+for f,s in freq:
+    if len(f) > 1:
+        for i in f:
+            c = s / sup([i])
+            if c >= min_conf:
+                print([i], "->", [x for x in f if x!=i],
+                      "Confidence:", round(c,2))

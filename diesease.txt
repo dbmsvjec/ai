@@ -1,0 +1,21 @@
+# Frame-based knowledge representation
+medical_knowledge = {
+    "Flu": {
+        "Symptoms": ["Fever", "Cough", "Headache"],
+        "Treatment": ["Rest", "Fluids", "Paracetamol"],
+        "Prevention": ["Vaccination", "Hand hygiene"]
+    },
+
+    "Diabetes": {
+        "Symptoms": ["Frequent urination", "Increased thirst", "Fatigue"],
+        "Treatment": ["Insulin", "Healthy diet", "Exercise"],
+        "Prevention": ["Balanced diet", "Regular checkups"]
+    }
+}
+
+disease = "Flu"
+
+print("Disease:", disease)
+print("Symptoms:", medical_knowledge[disease]["Symptoms"])
+print("Treatment:", medical_knowledge[disease]["Treatment"])
+print("Prevention:", medical_knowledge[disease]["Prevention"])

@@ -1,0 +1,18 @@
+import pandas as pd
+data = {
+    "StudyHours": [2, 3, 5, 6, 8],
+    "Attendance": [60, 65, 70, 80, 90],
+    "ExamScore": [50, 55, 65, 70, 85]
+}
+
+df = pd.DataFrame(data)
+correlation = df.corr()
+print("Correlation Matrix:\n")
+print(correlation)
+study_corr = correlation["ExamScore"]["StudyHours"]
+attendance_corr = correlation["ExamScore"]["Attendance"]
+
+if abs(study_corr) > abs(attendance_corr):
+    print("\nMost influential factor: Study Hours")
+else:
+    print("\nMost influential factor: Attendance")

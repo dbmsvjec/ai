@@ -1,0 +1,13 @@
+import random
+heights = [10, 20,22, 18, 35, 27, 40, 38]
+current = random.randint(0, len(heights) - 1)
+while True:
+    best = current
+    if current > 0 and heights[current - 1] > heights[best]:
+        best = current - 1
+    if current < len(heights) - 1 and heights[current + 1] > heights[best]:
+        best = current + 1
+    if best == current:
+        break
+    current = best
+print("Best location height:", heights[current])

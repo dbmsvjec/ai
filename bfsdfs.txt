@@ -1,0 +1,22 @@
+from collections import deque
+graph={
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': [ 'D']
+}
+def bfs(graph,start,goal):
+    queue=deque([[start]])
+    visited=set()
+    while queue:
+        path=queue.popleft()
+        node=path[-1]
+
+        if node==goal:
+            return path
+        if node not in visited:
+            visited.add(node)
+        for c in graph[node]:
+            new=path+[c]
+            queue.append(new)
+    return None
+print(bfs(graph,'A','C'))

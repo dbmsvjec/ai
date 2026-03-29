@@ -1,0 +1,33 @@
+import math
+
+values = [3, 5, 4, 2, 6, 7, 8, 9, 1, 10, 11, 12]
+
+max_depth = int(math.log2(len(values)))
+
+def alphabeta(i, d, maxplayer, a, b):
+    if d == max_depth:
+        return values[i]
+
+    if maxplayer:
+        v = -math.inf
+        for child in [2*i + 1, 2*i + 2]:
+            if child < len(values):
+                v = max(v, alphabeta(child, d + 1, False, a, b))
+                a = max(a, v)
+                if a >= b:
+                    break
+        return v
+
+    else:
+        v = math.inf
+        for child in [2*i + 1, 2*i + 2]:
+            if child < len(values):
+                v = min(v, alphabeta(child, d + 1, True, a, b))
+                b = min(b, v)
+                if b <= a:
+                    break
+        return v
+
+
+result = alphabeta(0, 0, True, -math.inf, math.inf)
+print("Optimal value:", result)

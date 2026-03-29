@@ -1,0 +1,20 @@
+from sklearn.cluster import KMeans
+data = [
+    [200, 5],
+    [220, 6],
+    [800, 20],
+    [850, 22],
+    [400, 10],
+    [420, 12]
+]
+
+k = 2
+
+model = KMeans(n_clusters=k, random_state=0)
+model.fit(data)
+
+labels = model.labels_
+
+print("Customer Groups:")
+for i, group in enumerate(labels):
+    print("Customer", i+1, "-> Group", group)

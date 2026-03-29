@@ -1,0 +1,33 @@
+subjects = ["Math", "Physics", "Chemistry"]
+slots = ["T1", "T2", "T3"]
+
+# Subjects that cannot be at same time
+conflicts = {
+    "Math": ["Physics"],
+    "Physics": ["Math", "Chemistry"],
+    "Chemistry": ["Physics"]
+}
+
+def valid(sub, slot, schedule):
+    for c in conflicts[sub]:
+        if c in schedule and schedule[c] == slot:
+            return False
+    return True
+
+def backtrack(schedule):
+    if len(schedule) == len(subjects):
+        return schedule
+
+    for sub in subjects:
+        if sub not in schedule:
+            for slot in slots:
+                if valid(sub, slot, schedule):
+                    schedule[sub] = slot
+                    result = backtrack(schedule)
+                    if result:
+                        return result
+                    del schedule[sub]
+            return None
+
+schedule = backtrack({})
+print(schedule)
